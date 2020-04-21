@@ -1,0 +1,68 @@
+{
+  "color": {
+    "modes": {
+      "light": {
+        "text": {
+          "value": "rgba(25, 25, 25, 0.9)"
+        },
+        "highlight": {
+          "value": "#009fe3"
+        },
+        "highlights": {
+          "0": {
+            "value": "#009fe3"
+          },
+          "1": {
+            "value": "#B2D7E6"
+          },
+          "2": {
+            "value": "#C5E1ED"
+          },
+          "3": {
+            "value": "#d3e7f0"
+          },
+          "4": {
+            "value": "#dfeef5"
+          }
+        },
+        "primary": {
+          "0": {
+            "value": "#5a90b1"
+          },
+          "1": {
+            "value": "#5485a3"
+          },
+          "2": {
+            "value": "#6b9bb9"
+          },
+          "3": {
+            "value": "#83acc5"
+          },
+          "4": {
+            "value": "#dee9ef"
+          }
+        },
+        "background": {
+          "value": "{color.modes.light.neutrals.0.value}"
+        },
+        "backgrounds": {
+          "0": {
+            "value": "{color.modes.light.neutrals.0.value}"
+          },
+          "1": {
+            "value": "{color.modes.light.neutrals.0.value}"
+          },
+          "2": {
+            "value": "{color.modes.light.neutrals.0.value}"
+          },
+          "3": {
+            "value": "{color.modes.light.neutrals.2.value}"
+          },
+          "4": {
+            "value": "{color.modes.light.neutrals.4.value}"
+          }
+        },
+      }
+    }
+  }
+}
