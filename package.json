@@ -1,0 +1,24 @@
+{
+  "name": "orchard-themeing",
+  "version": "0.0.1",
+  "description": "A theming system built for orchard",
+  "main": "generate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AW-Web-Design/Theme.git"
+  },
+  "author": "Andy Wilson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AW-Web-Design/Theme/issues"
+  },
+  "homepage": "https://github.com/AW-Web-Design/Theme#readme",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "style-dictionary": "^2.9.0",
+    "tinycolor2": "^1.4.1"
+  }
+}
