@@ -41,27 +41,7 @@
           "4": {
             "value": "#dee9ef"
           }
-        },
-        "background": {
-          "value": "{color.modes.light.neutrals.0.value}"
-        },
-        "backgrounds": {
-          "0": {
-            "value": "{color.modes.light.neutrals.0.value}"
-          },
-          "1": {
-            "value": "{color.modes.light.neutrals.0.value}"
-          },
-          "2": {
-            "value": "{color.modes.light.neutrals.0.value}"
-          },
-          "3": {
-            "value": "{color.modes.light.neutrals.2.value}"
-          },
-          "4": {
-            "value": "{color.modes.light.neutrals.4.value}"
-          }
-        },
+        }
       }
     }
   }

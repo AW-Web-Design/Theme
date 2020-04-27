@@ -4,7 +4,7 @@
   "platforms": {
     "PASSTHROUGH_JS": {
       "transforms": ["attribute/cti"],
-      "buildPath": "../dist/",
+      "buildPath": "dist/",
       "files": [
         {
           "destination": "core.ts",
@@ -18,8 +18,8 @@
       ]
     },
     "JS": {
-      "transforms": ["attribute/cti", "custom/makeSubtheme", "color/makeNeutrals"],
-      "buildPath": "../dist/",
+      "transforms": ["attribute/cti", "color/makeNeutrals"],
+      "buildPath": "dist/",
       "files": [
         {
           "destination": "dark-mode.ts",
