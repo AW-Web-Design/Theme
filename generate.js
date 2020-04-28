@@ -1,5 +1,6 @@
 const StyleDictionary = require("style-dictionary");
 const fs = require("fs-extra");
+const path = require('path');
 const _ = require("lodash");
 const Color = require("tinycolor2");
 
@@ -83,12 +84,12 @@ StyleDictionary.registerFormat({
 
 StyleDictionary.registerFormat({
   name: "custom/intent_tokens",
-  formatter: _.template(fs.readFileSync("./templates/intent_tokens.template"))
+  formatter: _.template(fs.readFileSync(path.resolve(__dirname, "./templates/intent_tokens.template")))
 });
 
 StyleDictionary.registerFormat({
   name: "custom/neutrals_tokens",
-  formatter: _.template(fs.readFileSync("./templates/neutrals_tokens.template"))
+  formatter: _.template(fs.readFileSync(path.resolve(__dirname, "./templates/neutrals_tokens.template")))
 });
 
 StyleDictionary.registerTransform({
