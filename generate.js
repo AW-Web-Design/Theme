@@ -203,7 +203,7 @@ const generate = (brand = "default") => {
   } else {
     console.log("Using default config");
     console.log(path.resolve(__dirname, `src/${brand.toLowerCase()}/**/*.json`));
-    ConfigWithSource.source = [`src/${brand.toLowerCase()}/**/*.json`];
+    ConfigWithSource.source = [path.resolve(__dirname, `src/${brand.toLowerCase()}/**/*.json`)];
   }
 
   const BaseStyleDictionary = StyleDictionary.extend(ConfigWithSource);
