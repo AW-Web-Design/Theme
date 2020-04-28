@@ -202,7 +202,7 @@ const generate = (brand = "default") => {
     ConfigWithSource.source = [`${process.cwd()}/theme/src/**/*.json`];
   } else {
     console.log("Using default config");
-    console.log(`src/${brand.toLowerCase()}/**/*.json`);
+    console.log(path.resolve(__dirname, `src/${brand.toLowerCase()}/**/*.json`));
     ConfigWithSource.source = [`src/${brand.toLowerCase()}/**/*.json`];
   }
 
