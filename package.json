@@ -1,5 +1,5 @@
 {
-  "name": "orchard-themeing",
+  "name": "@orchard/theme",
   "version": "0.0.1",
   "description": "A theming system built for orchard",
   "main": "generate.js",
@@ -16,6 +16,9 @@
     "url": "https://github.com/AW-Web-Design/Theme/issues"
   },
   "homepage": "https://github.com/AW-Web-Design/Theme#readme",
+  "publishConfig": {
+      "registry": "https://npm.pkg.github.com"
+  },
   "dependencies": {
     "fs-extra": "^9.0.0",
     "lodash": "^4.17.15",
