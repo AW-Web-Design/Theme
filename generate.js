@@ -198,9 +198,11 @@ const generate = (brand = "default") => {
   console.log(process.cwd());
   const ConfigWithSource = Config;
   if (fs.existsSync(`${process.cwd()}/theme/src`)) {
+    console.log("Using your config");
     ConfigWithSource.source = [`${process.cwd()}/theme/src/**/*.json`];
   } else {
-    ConfigWithSource.source = [`src/${brand.toLowerCase()}/**/*.json`];
+    console.log("Using default config");
+    ConfigWithSource.source = [`/src/${brand.toLowerCase()}/**/*.json`];
   }
 
   const BaseStyleDictionary = StyleDictionary.extend(ConfigWithSource);
