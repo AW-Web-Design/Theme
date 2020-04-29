@@ -10,6 +10,8 @@ const resolveConfig = () => {
       }
     });
   }
+  
+  return null;
 };
 
 resolveConfig();
