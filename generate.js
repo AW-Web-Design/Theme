@@ -5,7 +5,20 @@ const _ = require("lodash");
 const Color = require("tinycolor2");
 
 const Config = require("./config.json");
-const resolveConfig = require("./resolveConfig.js");
+
+const configFileNames = ["orchard.theme.config.json"];
+
+const resolveConfig = () => {
+  for (let i = 0; i < configFileNames.length; i++) {
+    fs.exists(`${process.cwd()}/${configFileNames[i]}`, (exists) => {
+      if (exists) {
+        return `${process.cwd()}/${configFileNames[i]}`;
+      }
+    });
+  }
+  
+  return null;
+};
 
 const minifyDictionary = obj => {
   const toRet = {};
@@ -197,7 +210,7 @@ StyleDictionary.registerAction({
 const generate = (brand = "default") => {
   fs.ensureDir(process.cwd() + `/theme/dist`);
   console.log(process.cwd());
-  const userConfigFile = resolveConfig;
+  const userConfigFile = resolveConfig();
   const ConfigWithSource = Config;
   if (fs.existsSync(`${process.cwd()}/theme/src`)) {
     console.log("Using your config");
