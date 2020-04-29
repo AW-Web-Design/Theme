@@ -6,7 +6,8 @@ orbs:
 workflows:
   version: 2
   test:
-    - test
+    jobs:
+      - test
 
 jobs:
   test:
