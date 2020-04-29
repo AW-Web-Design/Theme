@@ -107,11 +107,11 @@ StyleDictionary.registerFormat({
 });
 
 StyleDictionary.registerTransform({
-  name: "custom/makeSubtheme",
+  name: "custom/makeShades",
   type: "value",
   matcher(prop) {
     return (
-      prop.attributes.type === "subthemes" || prop.attributes.type === "intents"
+      prop.attributes.type === "intents"
     );
   },
   transformer(prop) {
