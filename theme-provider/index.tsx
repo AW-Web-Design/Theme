@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 
-import ThemeModeEnum from "../enums/themeModeEnum";
+import { ThemeModeEnum } from "../enums/themeModeEnum";
 import createTheme from "./create-theme";
 import { StyledDiv } from "./styled";
 
