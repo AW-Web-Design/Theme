@@ -5,7 +5,7 @@ const _ = require("lodash");
 const Color = require("tinycolor2");
 
 const Config = require("./config.json");
-const resolveConfig = require("./resolve-config.js");
+const resolveConfig = require("./resolveConfig.js");
 
 const minifyDictionary = obj => {
   const toRet = {};
