@@ -1,5 +1,5 @@
 import deepMerge from "deepmerge";
-import ThemeModeEnum from "../enums/themeModeEnum";
+import { ThemeModeEnum } from "../enums/themeModeEnum";
 
 const arrayMerge = (destination, source) => source;
 
