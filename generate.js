@@ -210,8 +210,7 @@ const generate = (brand = "default") => {
 
   BaseStyleDictionary.buildAllPlatforms();
 
-  fs.copySync("dist", process.cwd() + `/theme/dist`);
-  fs.remove('dist');
+  fs.copySync(path.resolve(__dirname, "dist"), process.cwd() + `/theme/dist`);
 };
 
 const argv = process.argv.slice(2);
