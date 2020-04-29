@@ -232,8 +232,6 @@ const generate = (brand = "default") => {
 
 const argv = process.argv.slice(2);
 
-lsExec();
-
 if (argv[0] === "--brand") {
   if (argv[1]) {
     // eslint-disable-next-line no-console
