@@ -12,4 +12,4 @@ const resolveConfig = () => {
   }
 };
 
-export default resolveConfig;
+resolveConfig();
