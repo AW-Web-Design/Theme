@@ -227,7 +227,7 @@ const generate = (brand = "default") => {
   
   lsExec();
 
-//   fs.copySync(path.resolve(__dirname, "dist"), process.cwd() + `/theme/dist`);
+  fs.copySync(path.resolve(__dirname, "dist"), process.cwd() + `/theme/dist`);
 };
 
 const argv = process.argv.slice(2);
