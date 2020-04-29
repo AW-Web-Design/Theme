@@ -107,7 +107,7 @@ StyleDictionary.registerFormat({
 });
 
 StyleDictionary.registerTransform({
-  name: "custom/makeShades",
+  name: "color/makeShades",
   type: "value",
   matcher(prop) {
     return (
