@@ -225,9 +225,9 @@ const generate = (brand = "default") => {
 
   BaseStyleDictionary.buildAllPlatforms();
   
-  lsExec();
+//   lsExec();
 
-  fs.copySync(path.resolve(__dirname, "dist"), process.cwd() + `/theme/dist`);
+//   fs.copySync(path.resolve(__dirname, "dist"), process.cwd() + `/theme/dist`);
 };
 
 const argv = process.argv.slice(2);
