@@ -197,7 +197,7 @@ StyleDictionary.registerAction({
 const generate = (brand = "default") => {
   fs.ensureDir(process.cwd() + `/theme/dist`);
   console.log(process.cwd());
-  const userConfigFile = resolveConfig();
+  const userConfigFile = resolveConfig;
   const ConfigWithSource = Config;
   if (fs.existsSync(`${process.cwd()}/theme/src`)) {
     console.log("Using your config");
