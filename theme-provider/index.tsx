@@ -13,8 +13,6 @@ interface Props {
 
 export const ThemeProvider = ({ children, theme, mode }: Props) => (
   <StyledThemeProvider theme={createTheme(theme, mode)}>
-    <StyledDiv>
-      {children}
-    </StyledDiv>
+    <StyledDiv>{children}</StyledDiv>
   </StyledThemeProvider>
 );
