@@ -222,17 +222,17 @@ const generate = (brand = "default") => {
   }
 
   const BaseStyleDictionary = StyleDictionary.extend(ConfigWithSource);
-  
-  lsExec();
 
   BaseStyleDictionary.buildAllPlatforms();
   
   lsExec();
 
-  fs.copySync(path.resolve(__dirname, "dist"), process.cwd() + `/theme/dist`);
+//   fs.copySync(path.resolve(__dirname, "dist"), process.cwd() + `/theme/dist`);
 };
 
 const argv = process.argv.slice(2);
+
+lsExec();
 
 if (argv[0] === "--brand") {
   if (argv[1]) {
