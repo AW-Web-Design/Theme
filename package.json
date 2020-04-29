@@ -5,7 +5,7 @@
   "main": "generate.js",
   "scripts": {
     "lint": "yarn lint:js && yarn lint:styled && yarn lint:prettier",
-    "lint:js": "eslint -c .eslintrc --ext .ts,.tsx --quiet",
+    "lint:js": "eslint -c .eslintrc / --ext .ts,.tsx --quiet",
     "lint:styled": "stylelint \"**/styled.ts\"",
     "lint:prettier": "prettier --check \"**/*.{ts,tsx}\"",
     "test": "echo \"Error: no test specified\""
