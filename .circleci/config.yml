@@ -19,5 +19,3 @@ jobs:
       - run: yarn
       - run: yarn lint
       - run: node generate.js
-      - run: cd dist && ls -la
-      - run: cd theme && ls -la && cd dist && ls -la
