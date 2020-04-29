@@ -27,7 +27,7 @@ const applyMode = (theme, mode) => {
   return theme;
 };
 
-const createTheme = (theme?: object, mode?: ThemeModeEnum) => (parent?: object) => {
+const createTheme = (theme?: any, mode?: ThemeModeEnum) => (parent?: any) => {
   const activeMode = getActiveMode(theme, parent, mode);
   const themeWithAppliedMode = applyMode(theme, activeMode);
   const parentWithAppliedMode = applyMode(parent, activeMode);
@@ -41,3 +41,4 @@ const createTheme = (theme?: object, mode?: ThemeModeEnum) => (parent?: object) 
 };
 
 export default createTheme;
+
