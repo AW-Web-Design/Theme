@@ -17,7 +17,8 @@ const applyMode = (theme, mode) => {
 
     if (theme.colors.modes[mode]) {
       return { ...theme, colors: deepMerge(colors, colors.modes[mode], { arrayMerge }) };
-    } else if (theme.colors.modes[ThemeModeEnum.LIGHT]) {
+    }
+    if (theme.colors.modes[ThemeModeEnum.LIGHT]) {
       return { ...theme, colors: deepMerge(colors, colors.modes[ThemeModeEnum.LIGHT], { arrayMerge }) };
     }
 
@@ -41,4 +42,3 @@ const createTheme = (theme?: any, mode?: ThemeModeEnum) => (parent?: any) => {
 };
 
 export default createTheme;
-
