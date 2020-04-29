@@ -9,20 +9,17 @@ const Config = require("./config.json");
 const configFileNames = ["orchard.theme.config.json"];
 
 const resolveConfig = () => {
-  let toReturnFileName = null;
-  
-  for (let i = 0; i < configFileNames.length; i++) {
-    fs.exists(`${process.cwd()}/${configFileNames[i]}`, (exists) => {
-      console.log(`${process.cwd()}/${configFileNames[i]}`);
-      if (exists) {
-        console.log(`${process.cwd()}/${configFileNames[i]} -- Exists`);
-        toReturnFileName = `${process.cwd()}/${configFileNames[i]}`;
-        return `${process.cwd()}/${configFileNames[i]}`;
-      }
-    });
+  new Promise(resolve => {
+    for (let i = 0; i < configFileNames.length; i++) {
+      fs.exists(`${process.cwd()}/${configFileNames[i]}`, (exists) => {
+        console.log(`${process.cwd()}/${configFileNames[i]}`);
+        if (exists) {
+          console.log(`${process.cwd()}/${configFileNames[i]} -- Exists`);
+          resolve(`${process.cwd()}/${configFileNames[i]}`);
+        }
+      });
+    })
   }
-  
-  return toReturnFileName;
 };
 
 const minifyDictionary = obj => {
@@ -212,10 +209,10 @@ StyleDictionary.registerAction({
   }
 });
 
-const generate = (brand = "default") => {
+const generate = async (brand = "default") => {
   fs.ensureDir(process.cwd() + `/theme/dist`);
   console.log(process.cwd());
-  const userConfigFile = resolveConfig();
+  const userConfigFile = await resolveConfig();
   const ConfigWithSource = Config;
   if (fs.existsSync(`${process.cwd()}/theme/src`)) {
     console.log("Using your config");
