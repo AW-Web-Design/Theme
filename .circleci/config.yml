@@ -1,0 +1,15 @@
+version: 2.1
+  
+orbs:
+  node: circleci/node@2.0.3
+
+jobs:
+  build:
+    executor:
+      name: node/default
+      tag: '12.16'
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn lint
+      - run: yarn test
