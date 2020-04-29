@@ -213,6 +213,7 @@ const generate = (brand = "default") => {
   BaseStyleDictionary.buildAllPlatforms();
 
   if (userConfigFile) {
+    console.log(userConfigFile);
     const userConfig = fs.readJsonSync(userConfigFile);
     fs.copySync(`${process.cwd()}/dist`, `${process.cwd()}${userConfig.outputDir ? userConfig.outputDir : "/"}theme/dist`);
   } else {
