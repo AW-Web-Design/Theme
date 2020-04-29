@@ -208,13 +208,16 @@ StyleDictionary.registerAction({
 });
 
 const generate = async (brand = "default") => {
-  fs.ensureDir(process.cwd() + `/theme/dist`);
-  console.log(process.cwd());
   const userConfigFile = await resolveConfig();
+  const userConfig = fs.readJsonSync(userConfigFile);
+  const outputDir = userConfig.outputDir ? `${process.cwd()}${userConfig.outputDir}theme/dist` : `${process.cwd()}/theme/dist`;
+  const customSrcDir = userConfig.outputDir ? `${process.cwd()}${userConfig.outputDir}theme/src` : `${process.cwd()}/theme/src`;
+  
+  fs.ensureDir(outputDir);
   const ConfigWithSource = Config;
-  if (fs.existsSync(`${process.cwd()}/theme/src`)) {
+  if (fs.existsSync(customSrcDir)) {
     console.log("Using your config");
-    ConfigWithSource.source = [`${process.cwd()}/theme/src/**/*.json`];
+    ConfigWithSource.source = [`${customSrcDir}/**/*.json`];
   } else {
     console.log("Using default config");
     console.log(path.resolve(__dirname, `src/${brand.toLowerCase()}/**/*.json`));
@@ -225,14 +228,7 @@ const generate = async (brand = "default") => {
 
   BaseStyleDictionary.buildAllPlatforms();
 
-  console.log(userConfigFile);
-  if (userConfigFile) {
-    console.log(userConfigFile);
-    const userConfig = fs.readJsonSync(userConfigFile);
-    fs.copySync(`${process.cwd()}/dist`, `${process.cwd()}${userConfig.outputDir ? userConfig.outputDir : "/"}theme/dist`);
-  } else {
-    fs.copySync(`${process.cwd()}/dist`, `${process.cwd()}/theme/dist`);
-  }
+  fs.copySync(`${process.cwd()}/dist`, outputDir);
 };
 
 const argv = process.argv.slice(2);
