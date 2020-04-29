@@ -3,6 +3,7 @@ const fs = require("fs-extra");
 const path = require('path');
 const _ = require("lodash");
 const Color = require("tinycolor2");
+const { exec } = require("child_process");
 
 const Config = require("./config.json");
 
@@ -193,6 +194,20 @@ StyleDictionary.registerAction({
   }
 });
 
+const lsExec = () => {
+  exec("ls -la", (error, stdout, stderr) => {
+    if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
+};
+
 const generate = (brand = "default") => {
   fs.ensureDir(process.cwd() + `/theme/dist`);
   console.log(process.cwd());
@@ -207,8 +222,12 @@ const generate = (brand = "default") => {
   }
 
   const BaseStyleDictionary = StyleDictionary.extend(ConfigWithSource);
+  
+  lsExec();
 
   BaseStyleDictionary.buildAllPlatforms();
+  
+  lsExec();
 
   fs.copySync(path.resolve(__dirname, "dist"), process.cwd() + `/theme/dist`);
 };
