@@ -5,6 +5,7 @@ const _ = require("lodash");
 const Color = require("tinycolor2");
 
 const Config = require("./config.json");
+const resolveConfig = require("./resolve-config.js");
 
 const minifyDictionary = obj => {
   const toRet = {};
@@ -196,6 +197,7 @@ StyleDictionary.registerAction({
 const generate = (brand = "default") => {
   fs.ensureDir(process.cwd() + `/theme/dist`);
   console.log(process.cwd());
+  const userConfigFile = resolveConfig();
   const ConfigWithSource = Config;
   if (fs.existsSync(`${process.cwd()}/theme/src`)) {
     console.log("Using your config");
@@ -210,7 +212,12 @@ const generate = (brand = "default") => {
 
   BaseStyleDictionary.buildAllPlatforms();
 
-  fs.copySync(`${process.cwd()}/dist`, `${process.cwd()}/theme/dist`);
+  if (userConfigFile) {
+    const userConfig = fs.readJsonSync(userConfigFile);
+    fs.copySync(`${process.cwd()}/dist`, `${process.cwd()}${userConfig.outputDir ? userConfig.outputDir : "/"}theme/dist`);
+  } else {
+    fs.copySync(`${process.cwd()}/dist`, `${process.cwd()}/theme/dist`);
+  }
 };
 
 const argv = process.argv.slice(2);
