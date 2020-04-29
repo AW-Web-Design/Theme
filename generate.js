@@ -230,6 +230,7 @@ const generate = (brand = "default") => {
 
   BaseStyleDictionary.buildAllPlatforms();
 
+  console.log(userConfigFile);
   if (userConfigFile) {
     console.log(userConfigFile);
     const userConfig = fs.readJsonSync(userConfigFile);
