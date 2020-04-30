@@ -7,7 +7,7 @@
     "lint": "yarn lint:js && yarn lint:styled",
     "lint:js": "eslint -c .eslintrc ./ --ext .ts,.tsx --quiet",
     "lint:styled": "stylelint \"**/styled.ts\"",
-    "test": "echo \"Error: no test specified\""
+    "test": "jest --silent"
   },
   "repository": {
     "type": "git",
