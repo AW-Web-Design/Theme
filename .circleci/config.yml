@@ -8,6 +8,12 @@ workflows:
   test:
     jobs:
       - test
+  deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
 
 jobs:
   test:
@@ -19,3 +25,9 @@ jobs:
       - run: yarn
       - run: yarn lint
       - run: node generate.js
+  deploy:
+    executor:
+      name: node/default
+      tag: '12.16'
+    steps:
+      - run: mom publish
