@@ -56,5 +56,8 @@
     "stylelint-order": "^4.0.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "prettier": "2.0.5"
+  },
+  "publishConfig": { 
+    "registry": "https://npm.pkg.github.com/" 
   }
 }
