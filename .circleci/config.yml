@@ -30,4 +30,4 @@ jobs:
       name: node/default
       tag: '12.16'
     steps:
-      - run: mom publish
+      - run: npm publish
