@@ -22,6 +22,7 @@ jobs:
       tag: '12.16'
     steps:
       - checkout
+      - run: npm i makeshift && ./node_modules/.bin/makeshift -s @aw-web-design -r https://npm.pkg.github.com -t $GITHUBTOKEN
       - persist_to_workspace:
           root: .
           paths:
