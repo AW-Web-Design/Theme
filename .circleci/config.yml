@@ -22,9 +22,6 @@ jobs:
       tag: '12.16'
     steps:
       - checkout
-      - run: echo "@aw-web-design:registry=https://npm.pkg.github.com/\n//npm.pkg.github.com/:_authToken=${GITHUBTOKEN}\n" > ~/.npmrc
-      - run: ls -la
-      - run: cat .npmrc
       - persist_to_workspace:
           root: .
           paths:
