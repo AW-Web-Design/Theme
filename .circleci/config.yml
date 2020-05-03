@@ -36,5 +36,5 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: echo "scope: aw-web-design/\n//npm.pkg.github.com/:_authToken=$GITHUBTOKEN/" > ~/.npmrc
+      - run: echo "//npm.pkg.github.com/:_authToken=$GITHUBTOKEN/" > ~/.npmrc
       - run: npm publish
