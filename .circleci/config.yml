@@ -22,7 +22,7 @@ jobs:
       tag: '12.16'
     steps:
       - checkout
-      - run: npm i -g makeshift && makeshift -s @aw-web-design -r npm.pkg.github.com/:_authToken=$GITHUBTOKEN
+      - run: npm i makeshift && makeshift -s @aw-web-design -r npm.pkg.github.com/:_authToken=$GITHUBTOKEN
       - persist_to_workspace:
           root: .
           paths:
