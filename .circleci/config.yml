@@ -23,6 +23,7 @@ jobs:
     steps:
       - checkout
       - run: npm i makeshift && ./node_modules/.bin/makeshift -s @aw-web-design -r https://npm.pkg.github.com -t $GITHUBTOKEN
+      - run: echo "@aw-web-design:registry=https://npm.pkg.github.com/\n//https://npm.pkg.github.com/:_authToken=${GITHUBTOKEN}\n" > ~/.npmrc
       - run: ls -la
       - run: cat .npmrc
       - persist_to_workspace:
