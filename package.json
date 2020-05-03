@@ -1,5 +1,5 @@
 {
-  "name": "aw-web-design/theme",
+  "name": "theme",
   "version": "0.0.1",
   "description": "A theming system built for orchard",
   "main": "generate.js",
