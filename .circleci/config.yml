@@ -24,6 +24,7 @@ jobs:
       - checkout
       - run: npm i makeshift && ./node_modules/.bin/makeshift -s @aw-web-design -r npm.pkg.github.com/:_authToken=$GITHUBTOKEN
       - run: ls -la
+      - run: nano .npmrc
       - persist_to_workspace:
           root: .
           paths:
