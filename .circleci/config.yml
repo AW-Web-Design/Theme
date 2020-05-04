@@ -42,4 +42,4 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: npm publish
+      - run: yarn publish
