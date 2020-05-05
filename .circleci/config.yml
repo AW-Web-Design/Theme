@@ -54,4 +54,4 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: yarn publish
+      - run: yarn release
