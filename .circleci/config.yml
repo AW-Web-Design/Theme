@@ -7,7 +7,13 @@ workflows:
   version: 2
   test:
     jobs:
-      - test
+      - test:
+          filters:
+            branches:
+              ignore:
+                - master
+                - /alpha-*/
+                - /beta-*/
   deploy:
     jobs:
       - test:
