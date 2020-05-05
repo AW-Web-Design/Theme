@@ -21,19 +21,9 @@
     "declaration": false,
     "skipLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "packages/*",
-        "packages/atoms/*",
-        "packages/molecules/*",
-        "packages/organisms/*",
-        "packages/pages/*",
-        "packages/utils/*"
-      ]
-    }
   },
   "include": [
-    "packages"
+    "src"
   ],
   "exclude": [
     "node_modules"
