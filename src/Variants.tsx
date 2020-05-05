@@ -6,7 +6,7 @@ interface Props {
   variants?: object;
 }
 
-export const variant = ({ prop = "variant", scale, variants = { primary: {} } }: Props) =>
+const variant = ({ prop = "variant", scale, variants = { primary: {} } }: Props) =>
   SsVariant({ prop, scale: scale ? `variants.${scale}` : undefined, variants });
 
 export const IntentVariants = variant({ scale: "intents" });
