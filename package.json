@@ -43,6 +43,7 @@
     "typescript": "^3.6.3"
   },
   "devDependencies": {
+    "rollup": "2.7.6",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "babel-plugin-react-remove-properties": "0.3.0",
     "babel-plugin-transform-dev-warning": "0.1.1",
