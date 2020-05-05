@@ -5,6 +5,7 @@ import replace from '@rollup/plugin-replace';
 import nodeGlobals from 'rollup-plugin-node-globals';
 import { terser } from 'rollup-plugin-terser';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
+import typescript from 'rollup-plugin-typescript';
 
 const input = './src/index.js';
 const globals = {
@@ -72,6 +73,7 @@ export default [
       nodeResolve(),
       babel(babelOptions),
       commonjs(commonjsOptions),
+      typescript(),
       nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
       replace({ 'process.env.NODE_ENV': JSON.stringify('development') }),
     ],
@@ -90,6 +92,7 @@ export default [
       nodeResolve(),
       babel(babelOptions),
       commonjs(commonjsOptions),
+      typescript(),
       nodeGlobals(), // Wait for https://github.com/cssinjs/jss/pull/893
       replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       sizeSnapshot({ snapshotPath: 'size-snapshot.json' }),
