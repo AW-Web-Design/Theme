@@ -1,8 +1,8 @@
 {
   "name": "@aw-web-design/theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A theming system built for orchard",
-  "main": "generate.js",
+  "main": "dist/index.js",
   "scripts": {
     "lint": "yarn lint:js && yarn lint:styled",
     "lint:js": "eslint -c .eslintrc ./ --ext .ts,.tsx --quiet",
@@ -30,8 +30,8 @@
     "deepmerge": "^4.2.2",
     "styled-components": "^5.0.1",
     "react": "16.13.1",
-    "@typescript-eslint/eslint-plugin": "^2.3.0",
-    "@typescript-eslint/parser": "^2.3.0",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
     "typescript": "^3.6.3"
   },
   "devDependencies": {
