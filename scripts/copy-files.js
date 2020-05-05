@@ -86,33 +86,6 @@ async function prepend(file, string) {
   await fse.writeFile(file, string + data, 'utf8');
 }
 
-async function addLicense(packageData) {
-  const license = `/** @license Material-UI v${packageData.version}
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-`;
-  await Promise.all(
-    [
-      './index.js',
-      './esm/index.js',
-      './umd/material-ui.development.js',
-      './umd/material-ui.production.min.js',
-    ].map(async (file) => {
-      try {
-        await prepend(path.resolve(buildPath, file), license);
-      } catch (err) {
-        if (err.code === 'ENOENT') {
-          console.log(`Skipped license for ${file}`);
-        } else {
-          throw err;
-        }
-      }
-    }),
-  );
-}
-
 async function run() {
   try {
     const packageData = await createPackageFile();
@@ -121,11 +94,8 @@ async function run() {
       [
         './README.md',
         './CHANGELOG.md',
-        './LICENSE',
       ].map((file) => includeFileInBuild(file)),
     );
-
-    await addLicense(packageData);
 
     // TypeScript
     await typescriptCopy({ from: srcPath, to: buildPath });
