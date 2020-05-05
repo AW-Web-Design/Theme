@@ -8,5 +8,8 @@
     "rootDir": "./src",
     "types": ["react"]
   },
-  "include": ["src/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
 }
