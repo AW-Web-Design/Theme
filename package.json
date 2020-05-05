@@ -15,7 +15,7 @@
     "build:copy-files": "node ./scripts/copy-files.js",
     "build:types": "tsc -p tsconfig.build.json",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build --tag latest",
+    "release": "yarn build && npm publish build --tag latest"
   },
   "repository": {
     "type": "git",
