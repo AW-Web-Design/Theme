@@ -43,6 +43,7 @@
     "typescript": "^3.6.3"
   },
   "devDependencies": {
+    "babel-plugin-optimize-clsx": "2.6.0",
     "@babel/cli": "7.8.4",
     "rimraf": "3.0.2",
     "cross-env": "7.0.2",
