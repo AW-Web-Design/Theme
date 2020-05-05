@@ -47,6 +47,7 @@ jobs:
       - run: yarn
       - run: yarn lint
       - run: node generate.js
+      - run: yarn release
   deploy:
     executor:
       name: node/default
