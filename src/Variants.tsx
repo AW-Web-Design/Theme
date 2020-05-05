@@ -1,4 +1,4 @@
-import { variants as SSVariant } from "styled-system";
+import { variants as SsVariant } from "styled-system";
 
 interface Props {
   prop?: string;
