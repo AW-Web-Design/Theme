@@ -13,8 +13,7 @@ const globals = {
 };
 const babelOptions = {
   exclude: /node_modules/,
-  // We are using @babel/plugin-transform-runtime
-  runtimeHelpers: true,
+  babelHelpers: 'runtime',
   configFile: './babel.config.js',
 };
 const commonjsOptions = {
