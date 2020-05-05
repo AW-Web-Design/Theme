@@ -43,6 +43,7 @@
     "typescript": "^3.6.3"
   },
   "devDependencies": {
+    "babel-plugin-react-remove-properties": "0.3.0",
     "babel-plugin-transform-dev-warning": "0.1.1",
     "@babel/plugin-transform-react-constant-elements": "7.9.0",
     "@babel/preset-typescript": "7.9.0",
