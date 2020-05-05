@@ -40,11 +40,11 @@ jobs:
       tag: '12.16'
     steps:
       - checkout
+      - run: yarn
       - persist_to_workspace:
           root: .
           paths:
             - .
-      - run: yarn
       - run: yarn lint
       - run: node generate.js
   deploy:
