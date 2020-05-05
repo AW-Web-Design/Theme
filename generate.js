@@ -211,7 +211,7 @@ const generate = async (brand = "default") => {
   const userConfigFile = await resolveConfig();
   const userConfig = fs.readJsonSync(userConfigFile);
   const outputDir = userConfig.outputDir ? `${process.cwd()}${userConfig.outputDir}theme/dist` : `${process.cwd()}/theme/dist`;
-  const customSrcDir = userConfig.outputDir ? `${process.cwd()}${userConfig.outputDir}theme/src` : `${process.cwd()}/theme/src`;
+  const customSrcDir = userConfig.srcDir ? `${process.cwd()}${userConfig.srcDir}theme/src` : `${process.cwd()}/theme/src`;
   
   fs.ensureDir(outputDir);
   const ConfigWithSource = Config;
@@ -220,8 +220,8 @@ const generate = async (brand = "default") => {
     ConfigWithSource.source = [`${customSrcDir}/**/*.json`];
   } else {
     console.log("Using default config");
-    console.log(path.resolve(__dirname, `src/${brand.toLowerCase()}/**/*.json`));
-    ConfigWithSource.source = [path.resolve(__dirname, `src/${brand.toLowerCase()}/**/*.json`)];
+    console.log(path.resolve(__dirname, `src/theme/${brand.toLowerCase()}/**/*.json`));
+    ConfigWithSource.source = [path.resolve(__dirname, `src/theme/${brand.toLowerCase()}/**/*.json`)];
   }
 
   const BaseStyleDictionary = StyleDictionary.extend(ConfigWithSource);
