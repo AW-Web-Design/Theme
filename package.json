@@ -1,6 +1,6 @@
 {
   "name": "@aw-web-design/theme",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A theming system built for orchard",
   "main": "dist/index.js",
   "scripts": {
