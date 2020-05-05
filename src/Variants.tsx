@@ -6,11 +6,9 @@ interface Props {
   variants?: object;
 }
 
-const variant = ({ prop = "variant", scale, variants = { primary: {} } }: Props) =>
+export const variant = ({ prop = "variant", scale, variants = { primary: {} } }: Props) =>
   SsVariant({ prop, scale: scale ? `variants.${scale}` : undefined, variants });
 
 export const IntentVariants = variant({ scale: "intents" });
 
 export const TypographyVariants = variant({ scale: "typography" });
-
-export default variant;
