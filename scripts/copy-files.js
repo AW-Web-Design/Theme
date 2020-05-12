@@ -94,6 +94,7 @@ async function run() {
       [
         './README.md',
         './CHANGELOG.md'
+        './src/generate.js'
       ].map((file) => includeFileInBuild(file)),
     );
 
