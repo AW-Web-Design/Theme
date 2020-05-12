@@ -4,7 +4,7 @@ const path = require('path');
 const _ = require("lodash");
 const Color = require("tinycolor2");
 
-const Config = require("./config.json");
+const Config = require("../config.json");
 
 const configFileNames = ["orchard.theme.config.json"];
 
