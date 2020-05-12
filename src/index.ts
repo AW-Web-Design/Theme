@@ -1,3 +1,3 @@
-import { variant, IntentVariants, TypographyVariants } from "./Variants";
+import { variant, IntentVariants, TypographyVariants } from "./variants";
 
 export { variant, IntentVariants, TypographyVariants };
