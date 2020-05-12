@@ -46,7 +46,7 @@ jobs:
           paths:
             - .
       - run: yarn lint
-      - run: node generate.js
+      - run: node src/generate.js
   deploy:
     executor:
       name: node/default
