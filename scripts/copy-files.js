@@ -93,7 +93,8 @@ async function run() {
     await Promise.all(
       [
         './README.md',
-        './CHANGELOG.md'
+        './CHANGELOG.md',
+        './config.json'
       ].map((file) => includeFileInBuild(file)),
     );
 
