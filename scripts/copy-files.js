@@ -94,7 +94,7 @@ async function run() {
       [
         './README.md',
         './CHANGELOG.md',
-        './config.json'
+        './src/config.json'
       ].map((file) => includeFileInBuild(file)),
     );
 
