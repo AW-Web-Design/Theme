@@ -97,7 +97,7 @@ async function run() {
         './src/config.json',
         './src/templates/intent_tokens.template',
         './src/templates/intents.template',
-        './src/templates/neutral_tokens.template'
+        './src/templates/neutrals_tokens.template'
       ].map((file) => includeFileInBuild(file)),
     );
 
