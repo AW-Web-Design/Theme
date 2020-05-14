@@ -94,7 +94,10 @@ async function run() {
       [
         './README.md',
         './CHANGELOG.md',
-        './src/config.json'
+        './src/config.json',
+        './src/templates/intent_tokens.template',
+        './src/templates/intents.template',
+        './src/templates/neutral_tokens.template'
       ].map((file) => includeFileInBuild(file)),
     );
 
