@@ -14,6 +14,13 @@ async function includeFileInBuild(file) {
   console.log(`Copied ${sourcePath} to ${targetPath}`);
 }
 
+async function includeFileInBuildTemplates(file) {
+  const sourcePath = path.resolve(packagePath, file);
+  const targetPath = path.resolve(buildPath, "templates", path.basename(file));
+  await fse.copy(sourcePath, targetPath);
+  console.log(`Copied ${sourcePath} to ${targetPath}`);
+}
+
 /**
  * Puts a package.json into every immediate child directory of rootDir.
  * That package.json contains information about esm for bundlers so that imports
@@ -94,11 +101,16 @@ async function run() {
       [
         './README.md',
         './CHANGELOG.md',
-        './src/config.json',
+        './src/config.json'
+      ].map((file) => includeFileInBuild(file)),
+    );
+
+    await Promise.all(
+      [
         './src/templates/intent_tokens.template',
         './src/templates/intents.template',
         './src/templates/neutrals_tokens.template'
-      ].map((file) => includeFileInBuild(file)),
+      ].map((file) => includeFileInBuildTemplates(file)),
     );
 
     // TypeScript
