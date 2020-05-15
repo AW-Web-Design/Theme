@@ -10,7 +10,7 @@ const srcPath = path.join(packagePath, './src');
 async function includeFileInBuild(file) {
   const sourcePath = path.resolve(packagePath, file);
   const targetPath = path.resolve(buildPath, path.basename(file));
-  await fse.copy(sourcePath, targetPath);
+  await fse.copySync(sourcePath, targetPath);
   console.log(`Copied ${sourcePath} to ${targetPath}`);
 }
 
@@ -101,16 +101,10 @@ async function run() {
       [
         './README.md',
         './CHANGELOG.md',
-        './src/config.json'
+        './src/config.json',
+        './src/templates',
+        './src/theme'
       ].map((file) => includeFileInBuild(file)),
-    );
-
-    await Promise.all(
-      [
-        './src/templates/intent_tokens.template',
-        './src/templates/intents.template',
-        './src/templates/neutrals_tokens.template'
-      ].map((file) => includeFileInBuildTemplates(file)),
     );
 
     // TypeScript
