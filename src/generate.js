@@ -219,8 +219,8 @@ const generate = async (brand = "default") => {
     ConfigWithSource.source = [`${customSrcDir}/**/*.json`];
   } else {
     console.log("Using default config");
-    console.log(path.resolve(__dirname, `src/theme/${brand.toLowerCase()}/**/*.json`));
-    ConfigWithSource.source = [path.resolve(__dirname, `src/theme/${brand.toLowerCase()}/**/*.json`)];
+    console.log(path.resolve(__dirname, `theme/${brand.toLowerCase()}/**/*.json`));
+    ConfigWithSource.source = [path.resolve(__dirname, `theme/${brand.toLowerCase()}/**/*.json`)];
   }
 
   const BaseStyleDictionary = StyleDictionary.extend(ConfigWithSource);
