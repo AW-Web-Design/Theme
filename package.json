@@ -57,7 +57,7 @@
     "@babel/plugin-proposal-object-rest-spread": "7.12.1",
     "@babel/plugin-proposal-class-properties": "7.12.1",
     "babel-plugin-optimize-clsx": "2.6.1",
-    "@babel/cli": "7.12.7",
+    "@babel/cli": "7.12.8",
     "rimraf": "3.0.2",
     "cross-env": "7.0.2",
     "babel-eslint": "^10.0.1",
