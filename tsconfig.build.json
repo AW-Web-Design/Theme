@@ -12,7 +12,6 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.template",
-    "src/theme/default/**/*.json",
     "src/generate.js"
   ]
 }
