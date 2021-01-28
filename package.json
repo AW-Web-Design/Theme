@@ -26,9 +26,6 @@
     "url": "https://github.com/AW-Web-Design/Theme/issues"
   },
   "homepage": "https://github.com/AW-Web-Design/Theme#readme",
-  "publishConfig": {
-      "registry": "https://npm.pkg.github.com"
-  },
   "dependencies": {
     "styled-system": "5.1.5",
     "fs-extra": "^9.0.1",
