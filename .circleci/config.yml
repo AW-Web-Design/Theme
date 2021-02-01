@@ -7,11 +7,6 @@ workflows:
   version: 2
   nextDeploy:
     jobs:
-      - test:
-          filters:
-            branches:
-              only:
-                - dev
       - nextDeploy:
           requires:
             - test
