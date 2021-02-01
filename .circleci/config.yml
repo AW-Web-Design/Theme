@@ -5,6 +5,20 @@ orbs:
   
 workflows:
   version: 2
+  nextDeploy:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - dev
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - dev
   test:
     jobs:
       - test:
@@ -47,6 +61,22 @@ jobs:
             - .
       - run: yarn lint
       - run: node src/generate.js
+  nextDeploy:
+    executor:
+      name: node/default
+      tag: '12.16'
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Build packages
+          command: yarn build
+      - run:
+          name: Authenticate with registry
+          command: npx npm-cli-login -u $USERNAME -p $PASSWORD -e $EMAIL -s @aw-web-design
+      - run:
+          name: Publish package
+          command: yarn publish build --access=public --tag=next
   deploy:
     executor:
       name: node/default
