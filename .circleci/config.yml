@@ -12,7 +12,7 @@ workflows:
             branches:
               only:
                 - dev
-      - deploy:
+      - nextDeploy:
           requires:
             - test
           filters:
