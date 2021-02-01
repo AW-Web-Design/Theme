@@ -227,7 +227,7 @@ const generate = async (brand = "default") => {
 
   BaseStyleDictionary.buildAllPlatforms();
 
-  fs.copySync(`${process.cwd()}/dist`, outputDir);
+  fs.copySync(`./dist`, outputDir);
 };
 
 const argv = process.argv.slice(2);
