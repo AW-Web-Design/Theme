@@ -77,7 +77,7 @@ jobs:
           command: npx npm-cli-login -u $USERNAME -p $PASSWORD -e $EMAIL -s @aw-web-design
       - run:
           name: Publish package
-          command: yarn publish build --access=public --tag=next
+          command: yarn publish build --access=public --tag=next --new-version 
   deploy:
     executor:
       name: node/default
