@@ -1,6 +1,6 @@
 {
   "name": "@aw-web-design/theme",
-  "version": "0.0.17",
+  "version": "0.0.23",
   "description": "A theming system built for orchard",
   "scripts": {
     "lint": "yarn lint:js && yarn lint:styled",
@@ -26,9 +26,6 @@
     "url": "https://github.com/AW-Web-Design/Theme/issues"
   },
   "homepage": "https://github.com/AW-Web-Design/Theme#readme",
-  "publishConfig": {
-      "registry": "https://npm.pkg.github.com"
-  },
   "dependencies": {
     "styled-system": "5.1.5",
     "fs-extra": "^9.1.0",
@@ -81,8 +78,5 @@
     "stylelint-order": "^4.1.0",
     "stylelint-processor-styled-components": "^1.10.0",
     "prettier": "2.2.1"
-  },
-  "publishConfig": { 
-    "registry": "https://npm.pkg.github.com/" 
   }
 }

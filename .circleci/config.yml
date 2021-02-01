@@ -54,4 +54,12 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: yarn release
+      - run:
+          name: Build packages
+          command: yarn build
+      - run:
+          name: Authenticate with registry
+          command: npx npm-cli-login -u $USERNAME -p $PASSWORD -e $EMAIL -s @aw-web-design
+      - run:
+          name: Publish package
+          command: yarn publish build --access=public
