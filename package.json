@@ -29,7 +29,7 @@
   "dependencies": {
     "styled-system": "5.1.5",
     "fs-extra": "^9.1.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "style-dictionary": "^2.10.2",
     "tinycolor2": "^1.4.2",
     "deepmerge": "^4.2.2",
