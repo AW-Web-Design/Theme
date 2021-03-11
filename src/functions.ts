@@ -1,4 +1,4 @@
-export const rgba2hex = orig => {
+export const rgba2hex = (orig) => {
   let a;
   const rgb = orig.replace(/\s/g, "").match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i);
   const alpha = ((rgb && rgb[4]) || "").trim();
