@@ -20,7 +20,7 @@ export const rgba2hex = (orig) => {
   return hex;
 };
 
-export const getContrast = (hexstring: string) => (props) => {
+export const getContrast = (hexstring: string) => {
   let hex;
   if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hexstring)) {
     hex = hexstring.substring(1);
