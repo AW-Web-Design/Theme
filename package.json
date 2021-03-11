@@ -1,6 +1,6 @@
 {
   "name": "@aw-web-design/theme",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "description": "A theming system built for orchard",
   "scripts": {
     "lint": "yarn lint:js && yarn lint:styled",
