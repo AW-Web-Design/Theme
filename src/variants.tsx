@@ -11,4 +11,4 @@ export const variant = ({ prop = "variant", scale, variants = { primary: {} } }:
 
 export const IntentVariants = variant({ scale: "intents" });
 
-export const TypographyVariants = variant({ scale: "typography" });
+export const TypographyVariants = variant({ scale: "typography.type" });
