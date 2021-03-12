@@ -21,20 +21,20 @@ export const rgba2hex = (orig) => {
 };
 
 type ModesType = {
-    light: {
-        text: string;
-    }
-    dark: {
-        text: string;
-    }
-    [x: string]: {
-        text: string;
-    }
-}
+  light: {
+    text: string;
+  };
+  dark: {
+    text: string;
+  };
+  [x: string]: {
+    text: string;
+  };
+};
 
 type ColorsType = {
-    modes: ModesType;
-}
+  modes: ModesType;
+};
 
 export const getContrast = (hexstring: string, colors?: ColorsType) => {
   let hex;
