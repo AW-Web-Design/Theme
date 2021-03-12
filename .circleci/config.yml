@@ -14,6 +14,15 @@ workflows:
                 - master
                 - /alpha-*/
                 - /beta-*/
+      - build:
+          requires:
+            - test
+          filters:
+            branches:
+              ignore:
+                - master
+                - /alpha-*/
+                - /beta-*/
   deploy:
     jobs:
       - test:
@@ -23,9 +32,18 @@ workflows:
                 - master
                 - /alpha-*/
                 - /beta-*/
-      - deploy:
+      - build:
           requires:
             - test
+          filters:
+            branches:
+              only:
+                - master
+                - /alpha-*/
+                - /beta-*/
+      - deploy:
+          requires:
+            - build
           filters:
             branches:
               only:
@@ -47,7 +65,7 @@ jobs:
             - .
       - run: yarn lint
       - run: node src/generate.js
-  deploy:
+  build:
     executor:
       name: node/default
       tag: '12.16'
@@ -57,6 +75,17 @@ jobs:
       - run:
           name: Build packages
           command: yarn build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  deploy:
+    executor:
+      name: node/default
+      tag: '12.16'
+    steps:
+      - attach_workspace:
+          at: .
       - run:
           name: Authenticate with registry
           command: npx npm-cli-login -u $USERNAME -p $PASSWORD -e $EMAIL -s @aw-web-design
