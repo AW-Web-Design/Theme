@@ -20,7 +20,23 @@ export const rgba2hex = (orig) => {
   return hex;
 };
 
-export const getContrast = (hexstring: string, colors = null) => {
+type ModesType = {
+    light: {
+        text: string;
+    }
+    dark: {
+        text: string;
+    }
+    [x: string]: {
+        text: string;
+    }
+}
+
+type ColorsType = {
+    modes: ModesType;
+}
+
+export const getContrast = (hexstring: string, colors?: ColorsType) => {
   let hex;
   if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hexstring)) {
     hex = hexstring.substring(1);
