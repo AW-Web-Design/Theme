@@ -11,27 +11,36 @@ const getActiveMode = (theme, parent, mode) => {
   return ThemeModeEnum.LIGHT;
 };
 
-const applyMode = (theme, mode) => {
+const applyMode = (theme, mode, globalMode) => {
   if (theme && theme.colors && theme.colors.modes) {
-    const colors = { ...theme.colors, mode };
+    const colors = { ...theme.colors };
 
     if (theme.colors.modes[mode]) {
-      return { ...theme, colors: deepMerge(colors, colors.modes[mode], { arrayMerge }) };
+      return { ...theme, mode, globalMode, colors: deepMerge(colors, colors.modes[mode], { arrayMerge }) };
     }
     if (theme.colors.modes[ThemeModeEnum.LIGHT]) {
-      return { ...theme, colors: deepMerge(colors, colors.modes[ThemeModeEnum.LIGHT], { arrayMerge }) };
+      return {
+        ...theme,
+        mode,
+        globalMode,
+        colors: deepMerge(colors, colors.modes[ThemeModeEnum.LIGHT], { arrayMerge }),
+      };
     }
 
-    return { ...theme, colors };
+    return { ...theme, mode, globalMode, colors };
   }
 
   return theme;
 };
 
-const createTheme = (theme?: any, mode?: ThemeModeEnum) => (parent?: any) => {
+const createTheme = (theme?: any, mode?: ThemeModeEnum, globalMode?: ThemeModeEnum) => (parent?: any) => {
+  if (mode === ThemeModeEnum.GLOBAL) {
+    mode = globalMode;
+  }
+
   const activeMode = getActiveMode(theme, parent, mode);
-  const themeWithAppliedMode = applyMode(theme, activeMode);
-  const parentWithAppliedMode = applyMode(parent, activeMode);
+  const themeWithAppliedMode = applyMode(theme, activeMode, globalMode);
+  const parentWithAppliedMode = applyMode(parent, activeMode, globalMode);
 
   if (parentWithAppliedMode && themeWithAppliedMode)
     return deepMerge(parentWithAppliedMode, themeWithAppliedMode, { arrayMerge });
