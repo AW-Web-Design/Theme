@@ -28,7 +28,7 @@
   "homepage": "https://github.com/AW-Web-Design/Theme#readme",
   "dependencies": {
     "@aw-web-design/styled-system": "^0.0.1-alpha.1",
-    "@types/react": "^17.0.5",
+    "@types/react": "^17.0.6",
     "@types/styled-components": "^5.1.9",
     "@types/styled-system": "^5.1.11",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
