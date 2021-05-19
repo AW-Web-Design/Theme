@@ -1,9 +1,9 @@
-import { variant as SsVariant } from "styled-system";
+import { variant as SsVariant } from "@aw-web-design/styled-system";
 
 interface Props {
-  prop?: string;
-  scale?: string;
-  variants?: object;
+    prop?: string;
+    scale?: string;
+    variants?: object;
 }
 
 export const variant = ({ prop = "variant", scale, variants = { primary: {} } }: Props) =>

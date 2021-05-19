@@ -1,11 +1,11 @@
-export const rgba2hex = (orig) => {
+export const rgba2hex = (orig: string) => {
   let a;
   const rgb = orig.replace(/\s/g, "").match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i);
   const alpha = ((rgb && rgb[4]) || "").trim();
   let hex = rgb
-    ? (rgb[1] | (1 << 8)).toString(16).slice(1) +
-      (rgb[2] | (1 << 8)).toString(16).slice(1) +
-      (rgb[3] | (1 << 8)).toString(16).slice(1)
+    ? (parseInt(rgb[1]) | (1 << 8)).toString(16).slice(1) +
+      (parseInt(rgb[2]) | (1 << 8)).toString(16).slice(1) +
+      (parseInt(rgb[3]) | (1 << 8)).toString(16).slice(1)
     : orig;
 
   if (alpha !== "") {
@@ -14,7 +14,7 @@ export const rgba2hex = (orig) => {
     a = "01";
   }
   // multiply before convert to HEX
-  a = ((a * 255) | (1 << 8)).toString(16).slice(1);
+  a = ((parseInt(a) * 255) | (1 << 8)).toString(16).slice(1);
   hex += a;
 
   return hex;
@@ -36,7 +36,7 @@ type ColorsType = {
   modes: ModesType;
 };
 
-export const getContrast = (hexstring: string, colors?: ColorsType) => {
+export const getContrast = (hexstring: string, colors?: ColorsType): string => {
   let hex;
   if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hexstring)) {
     hex = hexstring.substring(1);
@@ -64,7 +64,7 @@ export const getContrast = (hexstring: string, colors?: ColorsType) => {
 };
 
 // It can take both a hex and an rgba value. The hex is converted to an rgba, the rgba can have its opacity altered
-export const getRGBA = (color, opacity) => {
+export const getRGBA = (color: string, opacity: string) => {
   let c;
   if (color.includes("rgba")) {
     c = color.split(",");
@@ -79,7 +79,7 @@ export const getRGBA = (color, opacity) => {
     if (c.length === 3) {
       c = [c[0], c[0], c[1], c[1], c[2], c[2]];
     }
-    c = `0x${c.join("")}`;
+    c = parseInt(`0x${c.join("")}`);
     return `rgba(${[(c >> 16) & 255, (c >> 8) & 255, c & 255].join(",")},${opacity})`;
   }
   throw new Error("Bad Hex");
