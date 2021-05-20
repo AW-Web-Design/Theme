@@ -1,6 +1,7 @@
 {
   "version": "0.1.0-alpha-1",
   "license": "MIT",
+  "bin": "dist/cli.js",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -45,6 +46,7 @@
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.10.2",
+    "@types/sade": "^1.7.2",
     "husky": "^6.0.0",
     "size-limit": "^4.10.2",
     "tsdx": "^0.14.1",
@@ -60,6 +62,7 @@
     "fs-extra": "^10.0.0",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
+    "sade": "^1.7.4",
     "style-dictionary": "^2.10.3",
     "tinycolor2": "^1.4.2"
   }

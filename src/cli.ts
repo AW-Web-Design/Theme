@@ -1,17 +1,20 @@
-const StyleDictionary = require('style-dictionary');
-const fs = require('fs-extra');
-const path = require('path');
-const _ = require('lodash');
-const Color = require('tinycolor2');
+#!/usr/bin/env node
 
-const Config = require('./config.json');
+import sade from 'sade';
+import StyleDictionary from 'style-dictionary';
+import fs from 'fs-extra';
+import path from 'path';
+import { template } from 'lodash-es';
+import Color from 'tinycolor2';
+
+import Config from './config.json';
 
 const configFileNames = ['orchard.theme.config.json'];
 
-const resolveConfig = () =>
+const resolveConfig = (): Promise<string> =>
   new Promise(resolve => {
     for (let i = 0; i < configFileNames.length; i++) {
-      fs.existsSync(`${process.cwd()}/${configFileNames[i]}`, exists => {
+      fs.exists(`${process.cwd()}/${configFileNames[i]}`, exists => {
         if (exists) {
           console.log(`${process.cwd()}/${configFileNames[i]} -- Exists`);
           resolve(`${process.cwd()}/${configFileNames[i]}`);
@@ -20,22 +23,23 @@ const resolveConfig = () =>
     }
   });
 
-const minifyDictionary = obj => {
-  const toRet = {};
-  if (Object.keys(obj).includes('value')) {
+type objType2 = { [x: string]: objType };
+type objType = { [x: string]: objType2 };
+
+const minifyDictionary = (obj: objType) => {
+  const toRet: { [x: string]: any } = {};
+  if (obj?.value) {
     return obj.value;
   }
-  // eslint-disable-next-line no-restricted-syntax
+
   for (const name in obj) {
-    if (Object.keys(obj).includes(name)) {
-      toRet[name] = minifyDictionary(obj[name]);
-    }
+    toRet[name] = minifyDictionary(obj[name]);
   }
 
   return toRet;
 };
 
-const nestedJson = dictionary => {
+const nestedJson = (dictionary: any) => {
   if (dictionary.allProperties[0].name === 'neutral_base') {
     const properties = dictionary.properties;
 
@@ -98,33 +102,33 @@ StyleDictionary.registerFormat({
 
 StyleDictionary.registerFormat({
   name: 'custom/intent_tokens',
-  formatter: _.template(
+  formatter: template(
     fs.readFileSync(
       path.resolve(__dirname, './templates/intent_tokens.template')
-    )
+    ) as any
   ),
 });
 
 StyleDictionary.registerFormat({
   name: 'custom/neutrals_tokens',
-  formatter: _.template(
+  formatter: template(
     fs.readFileSync(
       path.resolve(__dirname, './templates/neutrals_tokens.template')
-    )
+    ) as any
   ),
 });
 
 StyleDictionary.registerTransform({
   name: 'color/makeShades',
   type: 'value',
-  matcher(prop) {
+  matcher(prop: any) {
     return prop.attributes.type === 'intents';
   },
-  transformer(prop) {
+  transformer(prop: any) {
     const color = Color(prop.value);
-    const subtheme = {};
-    const paletteLight = [];
-    const paletteDark = [];
+    const subtheme: { light: object; dark: object } = { light: {}, dark: {} };
+    const paletteLight: Array<string> = [];
+    const paletteDark: Array<string> = [];
 
     const colorBase = Color('#222222');
     const colorLight = Color('#FFF');
@@ -151,16 +155,16 @@ StyleDictionary.registerTransform({
 StyleDictionary.registerTransform({
   name: 'color/makeNeutrals',
   type: 'value',
-  matcher(prop) {
+  matcher(prop: any) {
     // this is an example of a possible filter (based on the "cti" values) to show how a "matcher" works
     return prop.attributes.type === 'neutral_base';
   },
-  transformer(prop) {
+  transformer(prop: any) {
     const colorBase = Color(prop.value);
     const colorLight = Color('#FFFFFF');
-    const neutrals = {};
-    const paletteLight = [];
-    const paletteDark = [];
+    const neutrals: { light: object; dark: object } = { light: {}, dark: {} };
+    const paletteLight: Array<string> = [];
+    const paletteDark: Array<string> = [];
     const percentages = [
       0,
       2,
@@ -203,11 +207,11 @@ StyleDictionary.registerTransform({
 
 StyleDictionary.registerAction({
   name: 'copy_assets',
-  do: function(dictionary, config) {
+  do: function(_: any, config: { buildPath: string }) {
     console.log('Copying assets directory');
     fs.copySync(config.buildPath, process.cwd() + `theme/${config.buildPath}`);
   },
-  undo: function(dictionary, config) {
+  undo: function(_: any, config: { buildPath: string }) {
     console.log('Cleaning assets directory');
     fs.removeSync(config.buildPath + 'dist');
   },
@@ -247,19 +251,33 @@ const generate = async (brand = 'default') => {
   fs.removeSync(`./dist`);
 };
 
-const argv = process.argv.slice(2);
+// const argv = process.argv.slice(2);
 
-if (argv[0] === '--brand') {
-  if (argv[1]) {
-    // eslint-disable-next-line no-console
-    console.log(`\nBuilding ${argv[1]} tokens...`);
-    generate(argv[1]);
-  } else {
-    throw new Error('Must specify brand when using --brand argument');
-  }
-} else {
-  // eslint-disable-next-line no-console
-  console.log('\nBuilding Default tokens...');
-  generate();
-  console.log('\nDone');
-}
+// if (argv[0] === '--brand') {
+//   if (argv[1]) {
+//     // eslint-disable-next-line no-console
+//     console.log(`\nBuilding ${argv[1]} tokens...`);
+//     generate(argv[1]);
+//   } else {
+//     throw new Error('Must specify brand when using --brand argument');
+//   }
+// } else {
+//   // eslint-disable-next-line no-console
+//   console.log('\nBuilding Default tokens...');
+//   generate();
+// }
+
+const cli = sade('aw-theme');
+
+cli
+  .command('generate')
+  .option(
+    '-b, --brand',
+    'Sets the brand if multiple brands are required else default'
+  )
+  .action(options => {
+    generate(options);
+  });
+
+
+cli.parse(process.argv);
