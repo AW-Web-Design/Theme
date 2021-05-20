@@ -1,6 +1,12 @@
-import React, { createContext, ReactNode, SetStateAction, useState, Dispatch } from "react";
-import { ThemeModeEnum } from "../enums/themeModeEnum";
-import { getThemeMode } from "./utils";
+import React, {
+  createContext,
+  ReactNode,
+  SetStateAction,
+  useState,
+  Dispatch,
+} from 'react';
+import { ThemeModeEnum } from '../enums/themeModeEnum';
+import { getThemeMode } from './utils';
 
 interface Props {
   value: ThemeModeEnum;
@@ -25,9 +31,17 @@ const GlobalThemeModeProvider = ({ children, value }: Props) => {
     setMode,
   };
 
-  return <GlobalThemeModeContext.Provider value={contextValue}>{children}</GlobalThemeModeContext.Provider>;
+  return (
+    <GlobalThemeModeContext.Provider value={contextValue}>
+      {children}
+    </GlobalThemeModeContext.Provider>
+  );
 };
 
 const GlobalThemeModeConsumer = GlobalThemeModeContext.Consumer;
 
-export { GlobalThemeModeContext, GlobalThemeModeConsumer, GlobalThemeModeProvider };
+export {
+  GlobalThemeModeContext,
+  GlobalThemeModeConsumer,
+  GlobalThemeModeProvider,
+};

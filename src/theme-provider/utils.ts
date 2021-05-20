@@ -1,11 +1,11 @@
-import { ThemeModeEnum } from "src/enums/themeModeEnum";
+import { ThemeModeEnum } from 'src/enums/themeModeEnum';
 
-const THEME_TOKEN = "theme::token";
+const THEME_TOKEN = 'theme::token';
 
 export const getThemeMode = () => {
-  return ThemeModeEnum[localStorage.getItem(THEME_TOKEN) ?? ""];
+  return ThemeModeEnum[localStorage.getItem(THEME_TOKEN) ?? ''];
 };
 
-export const setThemeMode = (mode) => {
+export const setThemeMode = mode => {
   localStorage.setItem(THEME_TOKEN, mode);
 };
