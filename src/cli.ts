@@ -276,6 +276,8 @@ cli
     'Sets the brand if multiple brands are required else default'
   )
   .action(options => {
+    console.log(options);
+
     generate(options);
   });
 
