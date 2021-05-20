@@ -11,7 +11,7 @@ const configFileNames = ['orchard.theme.config.json'];
 const resolveConfig = () =>
   new Promise(resolve => {
     for (let i = 0; i < configFileNames.length; i++) {
-      fs.exists(`${process.cwd()}/${configFileNames[i]}`, exists => {
+      fs.existsSync(`${process.cwd()}/${configFileNames[i]}`, exists => {
         if (exists) {
           console.log(`${process.cwd()}/${configFileNames[i]} -- Exists`);
           resolve(`${process.cwd()}/${configFileNames[i]}`);
@@ -261,4 +261,5 @@ if (argv[0] === '--brand') {
   // eslint-disable-next-line no-console
   console.log('\nBuilding Default tokens...');
   generate();
+  console.log('\nDone');
 }
