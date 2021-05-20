@@ -1,5 +1,5 @@
-import deepMerge from "deepmerge";
-import { ThemeModeEnum } from "../enums/themeModeEnum";
+import deepMerge from 'deepmerge';
+import { ThemeModeEnum } from '../enums/themeModeEnum';
 
 const arrayMerge = (destination, source) => source;
 
@@ -16,14 +16,21 @@ const applyMode = (theme, mode, globalMode) => {
     const colors = { ...theme.colors };
 
     if (theme.colors.modes[mode]) {
-      return { ...theme, mode, globalMode, colors: deepMerge(colors, colors.modes[mode], { arrayMerge }) };
+      return {
+        ...theme,
+        mode,
+        globalMode,
+        colors: deepMerge(colors, colors.modes[mode], { arrayMerge }),
+      };
     }
     if (theme.colors.modes[ThemeModeEnum.LIGHT]) {
       return {
         ...theme,
         mode,
         globalMode,
-        colors: deepMerge(colors, colors.modes[ThemeModeEnum.LIGHT], { arrayMerge }),
+        colors: deepMerge(colors, colors.modes[ThemeModeEnum.LIGHT], {
+          arrayMerge,
+        }),
       };
     }
 
@@ -33,7 +40,11 @@ const applyMode = (theme, mode, globalMode) => {
   return theme;
 };
 
-const createTheme = (theme?: any, mode?: ThemeModeEnum, globalMode?: ThemeModeEnum) => (parent?: any) => {
+const createTheme = (
+  theme?: any,
+  mode?: ThemeModeEnum,
+  globalMode?: ThemeModeEnum
+) => (parent?: any) => {
   if (mode === ThemeModeEnum.GLOBAL) {
     mode = globalMode;
   }
@@ -43,7 +54,9 @@ const createTheme = (theme?: any, mode?: ThemeModeEnum, globalMode?: ThemeModeEn
   const parentWithAppliedMode = applyMode(parent, activeMode, globalMode);
 
   if (parentWithAppliedMode && themeWithAppliedMode)
-    return deepMerge(parentWithAppliedMode, themeWithAppliedMode, { arrayMerge });
+    return deepMerge(parentWithAppliedMode, themeWithAppliedMode, {
+      arrayMerge,
+    });
   if (themeWithAppliedMode) return themeWithAppliedMode;
   if (parentWithAppliedMode) return parentWithAppliedMode;
 
