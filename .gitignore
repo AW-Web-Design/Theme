@@ -1,5 +1,4 @@
-dist
-temp
+*.log
+.DS_Store
 node_modules
-theme
-build
+dist

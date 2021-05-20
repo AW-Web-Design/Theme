@@ -1,83 +1,66 @@
 {
-  "name": "@aw-web-design/theme",
-  "version": "0.0.33",
-  "description": "A theming system built for orchard",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
   "scripts": {
-    "lint": "yarn lint:js && yarn lint:styled",
-    "lint:js": "eslint -c .eslintrc ./ --ext .ts,.tsx --quiet",
-    "lint:styled": "stylelint \"**/styled.ts\"",
-    "test": "jest --silent",
-    "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files && yarn build:types",
-    "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel --config-file ./babel.config.js --extensions \".js,.jsx,.ts,.tsx\" ./src --out-dir ./build --ignore \"**/*.test.js,**/*.d.ts\"",
-    "build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm babel --config-file ./babel.config.js --extensions \".js,.jsx,.ts,.tsx\" ./src --out-dir ./build/esm --ignore \"**/*.test.js,**/*.d.ts\"",
-    "build:es": "cross-env NODE_ENV=production BABEL_ENV=es babel --config-file ./babel.config.js --extensions \".js,.jsx,.ts,.tsx\" ./src --out-dir ./build/es --ignore \"**/*.test.js,**/*.d.ts\"",
-    "build:copy-files": "node ./scripts/copy-files.js",
-    "build:types": "tsc -p tsconfig.build.json",
-    "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build --tag latest"
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AW-Web-Design/Theme.git"
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
   },
-  "author": "Andy Wilson",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AW-Web-Design/Theme/issues"
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
   },
-  "homepage": "https://github.com/AW-Web-Design/Theme#readme",
-  "dependencies": {
-    "@aw-web-design/styled-system": "^0.0.2",
-    "@types/react": "^17.0.6",
-    "@types/styled-components": "^5.1.9",
-    "@types/styled-system": "^5.1.11",
-    "@typescript-eslint/eslint-plugin": "^2.34.0",
-    "@typescript-eslint/parser": "^2.34.0",
-    "deepmerge": "^4.2.2",
-    "fs-extra": "^10.0.0",
-    "lodash": "^4.17.20",
-    "memoize-one": "^5.2.1",
-    "react": "17.0.2",
-    "style-dictionary": "^2.10.3",
-    "styled-components": "^5.3.0",
-    "tinycolor2": "^1.4.2",
+  "name": "@aw-web-design/theme",
+  "author": "The-Code-Monkey",
+  "module": "dist/theme.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/theme.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/theme.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^4.10.2",
+    "husky": "^6.0.0",
+    "size-limit": "^4.10.2",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.2.0",
     "typescript": "^4.2.4"
   },
-  "devDependencies": {
-    "@babel/cli": "7.14.3",
-    "@babel/plugin-proposal-class-properties": "7.13.0",
-    "@babel/plugin-proposal-object-rest-spread": "7.14.2",
-    "@babel/plugin-transform-object-assign": "7.12.13",
-    "@babel/plugin-transform-react-constant-elements": "7.13.13",
-    "@babel/plugin-transform-runtime": "7.14.3",
-    "@babel/preset-react": "7.13.13",
-    "@babel/preset-typescript": "7.13.0",
-    "babel-eslint": "^10.0.1",
-    "babel-plugin-optimize-clsx": "2.6.1",
-    "babel-plugin-react-remove-properties": "0.3.0",
-    "babel-plugin-transform-dev-warning": "0.1.1",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
-    "cross-env": "7.0.3",
-    "eslint": "7.26.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-loader": "^4.0.2",
-    "eslint-plugin-import": "^2.23.2",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-react": "^7.23.2",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-standard": "^5.0.0",
-    "prettier": "2.3.0",
-    "rimraf": "3.0.2",
-    "stylelint": "^13.13.1",
-    "stylelint-config-recommended": "^5.0.0",
-    "stylelint-config-sass-guidelines": "^8.0.0",
-    "stylelint-config-standard": "^22.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-order": "^4.1.0",
-    "stylelint-processor-styled-components": "^1.10.0"
+  "dependencies": {
+    "@aw-web-design/styled-system": "^0.0.2",
+    "@types/fs-extra": "^9.0.11",
+    "@types/lodash": "^4.14.169",
+    "@types/lodash-es": "^4.17.4",
+    "@types/tinycolor2": "^1.4.2",
+    "fs-extra": "^10.0.0",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
+    "style-dictionary": "^2.10.3",
+    "tinycolor2": "^1.4.2"
   }
 }

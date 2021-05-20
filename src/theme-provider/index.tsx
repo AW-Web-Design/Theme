@@ -1,11 +1,11 @@
-import React, { ReactNode, useContext } from "react";
-import memoize from "memoize-one";
-import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import React, { ReactNode, useContext } from 'react';
+import memoize from 'memoize-one';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
-import { ThemeModeEnum } from "../enums/themeModeEnum";
-import { GlobalThemeModeContext } from "./GlobalThemeModeContext";
-import createTheme from "./create-theme";
-import { StyledDiv } from "./styled";
+import { ThemeModeEnum } from '../enums/themeModeEnum';
+import { GlobalThemeModeContext } from './GlobalThemeModeContext';
+import createTheme from './create-theme';
+import { StyledDiv } from './styled';
 
 interface Props {
   children: ReactNode;
@@ -13,14 +13,18 @@ interface Props {
   mode?: ThemeModeEnum;
 }
 
-const forwardPropHelper = (styledProps) => (prop, defaultValidatorFn) => {
-  const regex = new RegExp(`^(${styledProps.join("|")})$`);
+const forwardPropHelper = styledProps => (prop, defaultValidatorFn) => {
+  const regex = new RegExp(`^(${styledProps.join('|')})$`);
   return defaultValidatorFn(prop) && !regex.test(prop);
 };
 
 export const shouldForwardProp = memoize(forwardPropHelper);
 
-export const ThemeProvider = ({ children, theme, mode = ThemeModeEnum.GLOBAL }: Props) => {
+export const ThemeProvider = ({
+  children,
+  theme,
+  mode = ThemeModeEnum.GLOBAL,
+}: Props) => {
   const { mode: globalMode } = useContext(GlobalThemeModeContext);
 
   return (
@@ -30,5 +34,5 @@ export const ThemeProvider = ({ children, theme, mode = ThemeModeEnum.GLOBAL }: 
   );
 };
 
-export { getThemeMode, setThemeMode } from "./utils";
+export { getThemeMode, setThemeMode } from './utils';
 export { ThemeModeEnum, GlobalThemeModeContext };
