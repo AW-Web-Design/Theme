@@ -75,6 +75,11 @@ jobs:
       - run:
           name: Build packages
           command: yarn build
+
+      - run:
+          name: Test Cli
+          command: node ./dist/cli.js generate
+
       - persist_to_workspace:
           root: .
           paths:

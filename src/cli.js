@@ -13,24 +13,18 @@ const configFileNames = ['orchard.theme.config.json'];
 
 const resolveConfig = () =>
   new Promise(resolve => {
-    const foundFile = false;
-
     for (let i = 0; i < configFileNames.length; i++) {
       fs.exists(`${process.cwd()}/${configFileNames[i]}`, exists => {
         if (exists) {
-          foundFile = true;
-          console.log(`${process.cwd()}/${configFileNames[i]} -- Exists`);
           resolve(`${process.cwd()}/${configFileNames[i]}`);
         }
       });
     }
 
-    if (!foundFile) {
-        resolve(`./${configFileNames[0]}`);
-    }
+    resolve(`./${configFileNames[0]}`);
   });
 
-const minifyDictionary = (obj) => {
+const minifyDictionary = obj => {
   const toRet = {};
   if (obj?.value) {
     return obj.value;
@@ -43,7 +37,7 @@ const minifyDictionary = (obj) => {
   return toRet;
 };
 
-const nestedJson = (dictionary) => {
+const nestedJson = dictionary => {
   if (dictionary.allProperties[0].name === 'neutral_base') {
     const properties = dictionary.properties;
 
@@ -221,7 +215,7 @@ StyleDictionary.registerAction({
   },
 });
 
-const generate = async (options) => {
+const generate = async options => {
   const brand = options.b || options.brand;
   const userConfigFile = await resolveConfig();
   const userConfig = fs.readJsonSync(userConfigFile);
@@ -251,23 +245,22 @@ const generate = async (options) => {
 
   BaseStyleDictionary.buildAllPlatforms();
 
-  fs.copySync(`./dist`, outputDir);
+  fs.copySync(`./theme-dist`, outputDir);
 
-  fs.removeSync(`./dist`);
+  fs.removeSync(`./theme-dist`);
 };
 
-const cli = sade('aw-theme');
+const cli = sade('orchard-theme');
 
 cli
   .command('generate')
   .option(
     '-b, --brand',
     'Sets the brand if multiple brands are required else default',
-    "default"
+    'default'
   )
   .action(options => {
     generate(options);
   });
-
 
 cli.parse(process.argv);
