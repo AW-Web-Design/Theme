@@ -1,6 +1,7 @@
 {
-  "version": "0.1.0-alpha-1",
+  "version": "0.1.0-alpha-2",
   "license": "MIT",
+  "bin": "dist/cli.js",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -11,10 +12,11 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "tsdx build && yarn copy",
+    "copy": "cp ./src/cli.js ./dist/cli.js && cp ./src/config.json ./dist/config.json && cp -r ./src/templates ./dist && cp -r ./src/theme ./dist && cp ./orchard.theme.config.json ./dist",
     "test": "tsdx test",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
+    "prepare": "yarn build",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
@@ -44,9 +46,10 @@
     }
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.10.2",
+    "@size-limit/preset-small-lib": "^4.10.3",
+    "@types/sade": "^1.7.2",
     "husky": "^6.0.0",
-    "size-limit": "^4.10.2",
+    "size-limit": "^4.10.3",
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"
@@ -54,12 +57,13 @@
   "dependencies": {
     "@aw-web-design/styled-system": "^0.0.2",
     "@types/fs-extra": "^9.0.11",
-    "@types/lodash": "^4.14.169",
+    "@types/lodash": "^4.14.170",
     "@types/lodash-es": "^4.17.4",
     "@types/tinycolor2": "^1.4.2",
     "fs-extra": "^10.0.0",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
+    "sade": "^1.7.4",
     "style-dictionary": "^2.10.3",
     "tinycolor2": "^1.4.2"
   }

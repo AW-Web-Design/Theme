@@ -1,7 +1,10 @@
+#!/usr/bin/env node
+
+const sade = require('sade');
 const StyleDictionary = require('style-dictionary');
 const fs = require('fs-extra');
 const path = require('path');
-const _ = require('lodash');
+const { template } = require('lodash');
 const Color = require('tinycolor2');
 
 const Config = require('./config.json');
@@ -11,25 +14,24 @@ const configFileNames = ['orchard.theme.config.json'];
 const resolveConfig = () =>
   new Promise(resolve => {
     for (let i = 0; i < configFileNames.length; i++) {
-      fs.existsSync(`${process.cwd()}/${configFileNames[i]}`, exists => {
+      fs.exists(`${process.cwd()}/${configFileNames[i]}`, exists => {
         if (exists) {
-          console.log(`${process.cwd()}/${configFileNames[i]} -- Exists`);
           resolve(`${process.cwd()}/${configFileNames[i]}`);
         }
       });
     }
+
+    resolve(`./${configFileNames[0]}`);
   });
 
 const minifyDictionary = obj => {
   const toRet = {};
-  if (Object.keys(obj).includes('value')) {
+  if (obj.value) {
     return obj.value;
   }
-  // eslint-disable-next-line no-restricted-syntax
+
   for (const name in obj) {
-    if (Object.keys(obj).includes(name)) {
-      toRet[name] = minifyDictionary(obj[name]);
-    }
+    toRet[name] = minifyDictionary(obj[name]);
   }
 
   return toRet;
@@ -98,7 +100,7 @@ StyleDictionary.registerFormat({
 
 StyleDictionary.registerFormat({
   name: 'custom/intent_tokens',
-  formatter: _.template(
+  formatter: template(
     fs.readFileSync(
       path.resolve(__dirname, './templates/intent_tokens.template')
     )
@@ -107,7 +109,7 @@ StyleDictionary.registerFormat({
 
 StyleDictionary.registerFormat({
   name: 'custom/neutrals_tokens',
-  formatter: _.template(
+  formatter: template(
     fs.readFileSync(
       path.resolve(__dirname, './templates/neutrals_tokens.template')
     )
@@ -122,7 +124,7 @@ StyleDictionary.registerTransform({
   },
   transformer(prop) {
     const color = Color(prop.value);
-    const subtheme = {};
+    const subtheme = { light: {}, dark: {} };
     const paletteLight = [];
     const paletteDark = [];
 
@@ -158,7 +160,7 @@ StyleDictionary.registerTransform({
   transformer(prop) {
     const colorBase = Color(prop.value);
     const colorLight = Color('#FFFFFF');
-    const neutrals = {};
+    const neutrals = { light: {}, dark: {} };
     const paletteLight = [];
     const paletteDark = [];
     const percentages = [
@@ -203,17 +205,18 @@ StyleDictionary.registerTransform({
 
 StyleDictionary.registerAction({
   name: 'copy_assets',
-  do: function(dictionary, config) {
+  do: function(_, config) {
     console.log('Copying assets directory');
     fs.copySync(config.buildPath, process.cwd() + `theme/${config.buildPath}`);
   },
-  undo: function(dictionary, config) {
+  undo: function(_, config) {
     console.log('Cleaning assets directory');
     fs.removeSync(config.buildPath + 'dist');
   },
 });
 
-const generate = async (brand = 'default') => {
+const generate = async options => {
+  const brand = options.b || options.brand;
   const userConfigFile = await resolveConfig();
   const userConfig = fs.readJsonSync(userConfigFile);
   const outputDir = userConfig.outputDir
@@ -242,24 +245,22 @@ const generate = async (brand = 'default') => {
 
   BaseStyleDictionary.buildAllPlatforms();
 
-  fs.copySync(`./dist`, outputDir);
+  fs.copySync(`./theme-dist`, outputDir);
 
-  fs.removeSync(`./dist`);
+  fs.removeSync(`./theme-dist`);
 };
 
-const argv = process.argv.slice(2);
+const cli = sade('orchard-theme');
 
-if (argv[0] === '--brand') {
-  if (argv[1]) {
-    // eslint-disable-next-line no-console
-    console.log(`\nBuilding ${argv[1]} tokens...`);
-    generate(argv[1]);
-  } else {
-    throw new Error('Must specify brand when using --brand argument');
-  }
-} else {
-  // eslint-disable-next-line no-console
-  console.log('\nBuilding Default tokens...');
-  generate();
-  console.log('\nDone');
-}
+cli
+  .command('generate')
+  .option(
+    '-b, --brand',
+    'Sets the brand if multiple brands are required else default',
+    'default'
+  )
+  .action(options => {
+    generate(options);
+  });
+
+cli.parse(process.argv);

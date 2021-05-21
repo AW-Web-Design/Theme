@@ -64,7 +64,10 @@ jobs:
           paths:
             - .
       - run: yarn lint
-      - run: node src/generate.js
+      
+      - run:
+          name: Test Cli
+          command: node ./dist/cli.js generate
   build:
     executor:
       name: node/default
@@ -75,6 +78,7 @@ jobs:
       - run:
           name: Build packages
           command: yarn build
+
       - persist_to_workspace:
           root: .
           paths:
