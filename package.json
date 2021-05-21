@@ -13,7 +13,7 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build && yarn copy",
-    "copy": "cp ./src/cli.js ./dist/cli.js && cp ./src/config.json ./dist/config.json && cp -r ./src/templates ./dist && cp -r ./src/theme ./dist",
+    "copy": "cp ./src/cli.js ./dist/cli.js && cp ./src/config.json ./dist/config.json && cp -r ./src/templates ./dist && cp -r ./src/theme ./dist && cp ./orchard.theme.config.json ./dist",
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "yarn build",

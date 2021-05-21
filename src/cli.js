@@ -26,7 +26,7 @@ const resolveConfig = () =>
 
 const minifyDictionary = obj => {
   const toRet = {};
-  if (obj?.value) {
+  if (obj.value) {
     return obj.value;
   }
 
