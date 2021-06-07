@@ -64,7 +64,7 @@
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "sade": "^1.7.4",
-    "style-dictionary": "^2.10.3",
+    "style-dictionary": "^3.0.1",
     "tinycolor2": "^1.4.2"
   }
 }
