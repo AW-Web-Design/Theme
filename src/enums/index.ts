@@ -1,1 +1,1 @@
-export * from "./themeModeEnum.ts";
+export * from "./themeModeEnum";
