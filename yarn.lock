@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@aw-web-design/styled-system@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@aw-web-design/styled-system/-/styled-system-0.1.2.tgz#69468d2283d6c3f67e350adbbcdd539edaad7d74"
-  integrity sha512-sz0Jp7zE62aI8vA9JfpW9oKSNzGVcDP+qVwqvbriNNqnSJCxlpg2sOR6cNcn6Wv+asDsv01cUOtMXyMxUAk1Xg==
+"@aw-web-design/styled-system@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@aw-web-design/styled-system/-/styled-system-0.1.3.tgz#7ecbae36431b749c6ddfd6ad6b8a37dae768c166"
+  integrity sha512-jtvUSuSDj5LItelT2BInk66QMc73W8jrFrVspkUGogLR56cqZzRfbzlEj9Uryc2TFoybbeSHfjJgqsDp752+VQ==
   dependencies:
     "@emotion/is-prop-valid" "^1.1.0"
     "@emotion/memoize" "^0.7.5"
