@@ -1,1 +1,1 @@
-export * from "./themeModeEnum";
+export * from './themeModeEnum';
